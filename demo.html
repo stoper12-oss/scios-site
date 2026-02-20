@@ -13,35 +13,24 @@
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
     *{box-sizing:border-box}
-    body{
-      margin:0; font-family:var(--sans);
-      background:
-        radial-gradient(1200px 600px at 20% 0%, rgba(107,228,255,.10), transparent 55%),
-        radial-gradient(900px 550px at 90% 10%, rgba(167,139,250,.10), transparent 55%),
-        var(--bg);
-      color:var(--text);
-    }
+    body{margin:0; font-family:var(--sans); background: radial-gradient(1200px 600px at 20% 0%, rgba(107,228,255,.10), transparent 55%),
+                                          radial-gradient(900px 550px at 90% 10%, rgba(167,139,250,.10), transparent 55%),
+                                          var(--bg);
+         color:var(--text);}
     a{color:inherit; text-decoration:none}
     .wrap{max-width:1100px; margin:0 auto; padding:22px}
-    header{
-      border-bottom:1px solid var(--line);
-      position:sticky; top:0; z-index:10; backdrop-filter: blur(12px);
-      background: linear-gradient(to bottom, rgba(11,15,20,.92), rgba(11,15,20,.55));
-    }
+    header{border-bottom:1px solid var(--line); position:sticky; top:0; z-index:10; backdrop-filter: blur(12px);
+           background: linear-gradient(to bottom, rgba(11,15,20,.92), rgba(11,15,20,.55));}
     nav{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0;}
-    .brand{display:flex; align-items:center; gap:12px; font-weight:950; letter-spacing:.2px}
-    .logo{
-      width:34px; height:34px; border-radius:12px;
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900; letter-spacing:.2px}
+    .logo{width:34px; height:34px; border-radius:12px;
       background: conic-gradient(from 210deg, var(--accent), var(--accent2), var(--good), var(--accent));
-      box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 12px 24px rgba(0,0,0,.35);
-    }
+      box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 12px 24px rgba(0,0,0,.35);}
     .pill{padding:10px 12px; border:1px solid var(--line); border-radius:999px; color:var(--muted);}
     .pill:hover{border-color:rgba(255,255,255,.18); color:var(--text)}
-    .card{
-      border:1px solid var(--line); border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      box-shadow: var(--shadow); overflow:hidden
-    }
+    .card{border:1px solid var(--line); border-radius: var(--radius);
+          background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+          box-shadow: var(--shadow); overflow:hidden}
     .pad{padding:18px}
     h1{margin:18px 0 10px; font-size: clamp(26px, 3vw, 40px); line-height:1.1}
     .muted{color:var(--muted); line-height:1.55}
@@ -49,40 +38,27 @@
     .two{grid-template-columns: 1fr 1fr}
     @media (max-width: 920px){ .two{grid-template-columns:1fr} }
     .btnRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 14px; border-radius:12px; border:1px solid var(--line);
-      background: rgba(255,255,255,.03); color:var(--text); font-weight:950; cursor:pointer
-    }
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:12px 14px;
+         border-radius:12px; border:1px solid var(--line); background: rgba(255,255,255,.03);
+         color:var(--text); font-weight:900; cursor:pointer}
     .btn:hover{border-color:rgba(255,255,255,.18)}
-    .btn.primary{
-      border-color:rgba(107,228,255,.55);
-      background: linear-gradient(135deg, rgba(107,228,255,.18), rgba(167,139,250,.12))
-    }
-    .btn.good{
-      border-color:rgba(62,240,168,.55);
-      background: linear-gradient(135deg, rgba(62,240,168,.16), rgba(107,228,255,.08))
-    }
-    .btn.warn{
-      border-color:rgba(255,207,92,.55);
-      background: linear-gradient(135deg, rgba(255,207,92,.14), rgba(167,139,250,.06))
-    }
-    .timeline{font-family:var(--mono); font-size:12.5px; color:var(--muted); max-height:260px; overflow:auto}
+    .btn.primary{border-color:rgba(107,228,255,.55);
+      background: linear-gradient(135deg, rgba(107,228,255,.18), rgba(167,139,250,.12))}
+    .btn.good{border-color:rgba(62,240,168,.55);
+      background: linear-gradient(135deg, rgba(62,240,168,.16), rgba(107,228,255,.08))}
+    .btn.warn{border-color:rgba(255,207,92,.55);
+      background: linear-gradient(135deg, rgba(255,207,92,.14), rgba(167,139,250,.06))}
+    .timeline{font-family:var(--mono); font-size:12.5px; color:var(--muted)}
     .row{display:flex; gap:10px; padding:10px 0; border-top:1px solid var(--line)}
     .dot{width:10px; height:10px; border-radius:99px; margin-top:4px; background: rgba(107,228,255,.8)}
     .dot.g{background: rgba(62,240,168,.8)}
     .dot.p{background: rgba(167,139,250,.85)}
     .dot.w{background: rgba(255,207,92,.85)}
-    pre{
-      margin:0; padding:14px; border:1px solid var(--line); border-radius:14px;
-      background: rgba(0,0,0,.22); overflow:auto; font-family:var(--mono);
-      font-size:12.5px; line-height:1.45
-    }
+    pre{margin:0; padding:14px; border:1px solid var(--line); border-radius:14px; background: rgba(0,0,0,.22);
+        overflow:auto; font-family:var(--mono); font-size:12.5px; line-height:1.45}
     .kpi{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .chip{
-      font-family:var(--mono); font-size:12px; padding:7px 10px; border:1px solid var(--line);
-      border-radius:999px; color:var(--muted); background: rgba(0,0,0,.18)
-    }
+    .chip{font-family:var(--mono); font-size:12px; padding:7px 10px; border:1px solid var(--line);
+          border-radius:999px; color:var(--muted); background: rgba(0,0,0,.18)}
     .chip b{color:var(--text)}
   </style>
 </head>
@@ -92,7 +68,7 @@
     <nav>
       <a class="brand" href="./index.html" aria-label="Back to site">
         <span class="logo"></span>
-        <div>SCIOS <span style="color:var(--muted); font-weight:900">Demo</span></div>
+        <div>SCIOS <span style="color:var(--muted); font-weight:800">Demo</span></div>
       </a>
       <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end">
         <a class="pill" href="./index.html">Home</a>
@@ -105,14 +81,14 @@
 <main class="wrap">
   <h1>Example Demo: Multi-Agent Orchestration (Browser-Run)</h1>
   <p class="muted">
-    This is a no-install investor demo showing SCIOS: a command triggers an orchestrator, which sequences multiple agents,
-    updates shared memory, and produces an auditable run log.
+    This is a no-install investor demo that shows the SCIOS concept: a command triggers an orchestrator,
+    which sequences multiple agents, updates shared memory, and produces an auditable run log.
   </p>
 
   <div class="kpi">
     <span class="chip"><b>Command Hub</b> → Orchestrator</span>
     <span class="chip"><b>Agents</b> → Scanner / Analyzer / Reporter</span>
-    <span class="chip"><b>Artifacts</b> → run_log.json</span>
+    <span class="chip"><b>Artifacts</b> → Run Log JSON</span>
   </div>
 
   <div class="grid two" style="margin-top:14px">
@@ -167,6 +143,7 @@
       </div>
       <p class="muted" style="margin:10px 0 0">
         Note: GitHub Pages is static hosting. This demo runs client-side to be instantly testable by investors.
+        A full local runnable demo package can be provided as a download when needed.
       </p>
     </div>
   </div>
@@ -205,12 +182,15 @@
     timelineEl.scrollTop = timelineEl.scrollHeight;
   }
 
-  function render(){ memoryView.textContent = JSON.stringify(memory, null, 2); }
+  function render(){
+    memoryView.textContent = JSON.stringify(memory, null, 2);
+  }
 
   function newRunId(){
     return (Math.random().toString(16).slice(2) + Math.random().toString(16).slice(2)).slice(0, 16);
   }
 
+  // "Agents" (browser demo)
   async function scannerAgent(ctx){
     addLine("purple", `<b>[scanner_agent]</b> Collecting system snapshot...`);
     await sleep(600);
@@ -307,6 +287,7 @@
         stepObj.output = out;
         stepObj.finished_ts = nowIso();
 
+        // write to shared memory
         if(out && out.artifact){
           memory[out.artifact] = out.result;
           runLog.artifacts.push({ type: out.artifact, created_ts: stepObj.finished_ts });
