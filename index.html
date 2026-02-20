@@ -3,14 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SCIOS Demo | Orchestration Example</title>
+  <meta name="description" content="SCIOS by Willis Hartin — secure autonomous AI operating system and infrastructure platform." />
+  <title>SCIOS by Willis Hartin</title>
   <style>
     :root{
-      --bg:#0b0f14; --panel:#0f1620; --text:#e6edf3; --muted:#9fb0c0; --line:rgba(255,255,255,.08);
-      --accent:#6be4ff; --accent2:#a78bfa; --good:#3ef0a8; --warn:#ffcf5c;
-      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.45);
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --bg:#0b0f14; --panel:#0f1620; --panel2:#0d131c; --text:#e6edf3; --muted:#9fb0c0;
+      --line:rgba(255,255,255,.08); --accent:#6be4ff; --accent2:#a78bfa; --good:#3ef0a8; --warn:#ffcf5c;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --radius: 18px;
+      --max: 1120px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
     *{box-sizing:border-box}
     body{
@@ -22,366 +25,376 @@
       color:var(--text);
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:1100px; margin:0 auto; padding:22px}
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px}
     header{
-      border-bottom:1px solid var(--line);
-      position:sticky; top:0; z-index:10; backdrop-filter: blur(12px);
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(12px);
       background: linear-gradient(to bottom, rgba(11,15,20,.92), rgba(11,15,20,.55));
+      border-bottom: 1px solid var(--line);
     }
-    nav{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0;}
-    .brand{display:flex; align-items:center; gap:12px; font-weight:950; letter-spacing:.2px}
+    nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0;}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900; letter-spacing:.2px}
     .logo{
-      width:34px; height:34px; border-radius:12px;
+      width:36px; height:36px; border-radius:12px;
       background: conic-gradient(from 210deg, var(--accent), var(--accent2), var(--good), var(--accent));
       box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 12px 24px rgba(0,0,0,.35);
     }
+    .brand small{display:block; font-weight:700; color:var(--muted); letter-spacing:.4px}
+    .navlinks{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
     .pill{padding:10px 12px; border:1px solid var(--line); border-radius:999px; color:var(--muted);}
     .pill:hover{border-color:rgba(255,255,255,.18); color:var(--text)}
+    .cta{
+      padding:10px 14px; border-radius:999px; border:1px solid rgba(107,228,255,.35);
+      background: linear-gradient(135deg, rgba(107,228,255,.15), rgba(167,139,250,.12));
+      color:var(--text); font-weight:900
+    }
+    .cta:hover{border-color:rgba(107,228,255,.6)}
+    .hero{padding:42px 0 10px;}
+    .grid{display:grid; gap:18px}
+    .heroGrid{grid-template-columns: 1.2fr .8fr}
+    @media (max-width: 920px){ .heroGrid{grid-template-columns:1fr} }
+    h1{font-size: clamp(34px, 4vw, 56px); line-height:1.05; margin:0 0 14px;}
+    .sub{color:var(--muted); font-size: clamp(16px, 1.5vw, 18px); line-height:1.55; margin:0 0 18px;}
+    .kpis{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    .kpi{
+      border:1px solid var(--line); background: rgba(255,255,255,.03);
+      padding:10px 12px; border-radius:999px; color:var(--muted);
+      font-family:var(--mono); font-size:12.5px
+    }
+    .kpi b{color:var(--text); font-weight:900}
     .card{
       border:1px solid var(--line); border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
       box-shadow: var(--shadow); overflow:hidden
     }
-    .pad{padding:18px}
-    h1{margin:18px 0 10px; font-size: clamp(26px, 3vw, 40px); line-height:1.1}
-    .muted{color:var(--muted); line-height:1.55}
-    .grid{display:grid; gap:14px}
-    .two{grid-template-columns: 1fr 1fr}
-    @media (max-width: 920px){ .two{grid-template-columns:1fr} }
-    .btnRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .card .pad{padding:18px}
+    .card h3{margin:0 0 10px}
+    .card p{margin:0; color:var(--muted); line-height:1.55}
+    .badgeRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .badge{
+      font-size:12px; padding:7px 10px; border-radius:999px;
+      border:1px solid var(--line); background: rgba(0,0,0,.18); color:var(--muted)
+    }
+    .badge.good{border-color:rgba(62,240,168,.35); color:#b9ffe3}
+    .badge.warn{border-color:rgba(255,207,92,.35); color:#fff0c2}
+    .section{padding:28px 0}
+    .section h2{margin:0 0 12px; font-size: clamp(22px, 2.4vw, 30px)}
+    .section .lead{margin:0 0 16px; color:var(--muted); line-height:1.55}
+    .features{grid-template-columns: repeat(3, 1fr)}
+    @media (max-width: 920px){ .features{grid-template-columns:1fr} }
+    .feature{padding:18px}
+    .feature .tag{display:inline-block; font-family:var(--mono); font-size:12px; color:rgba(107,228,255,.9); margin-bottom:8px}
+    .split{grid-template-columns:1fr 1fr}
+    @media (max-width: 920px){ .split{grid-template-columns:1fr} }
+    .list{margin:10px 0 0; padding:0; list-style:none}
+    .list li{display:flex; gap:10px; padding:10px 0; border-top:1px solid var(--line); color:var(--muted)}
+    .dot{width:10px; height:10px; border-radius:999px; margin-top:6px; background: rgba(107,228,255,.7)}
+    .dot.p{background: rgba(167,139,250,.75)}
+    .dot.g{background: rgba(62,240,168,.75)}
+    .pricing{grid-template-columns: repeat(3, 1fr)}
+    @media (max-width: 920px){ .pricing{grid-template-columns:1fr} }
+    .price{padding:18px}
+    .price h3{margin:0 0 8px}
+    .money{font-size:26px; font-weight:950; letter-spacing:-.3px}
+    .muted{color:var(--muted)}
+    .btnRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 14px; border-radius:12px; border:1px solid var(--line);
-      background: rgba(255,255,255,.03); color:var(--text); font-weight:950; cursor:pointer
+      background: rgba(255,255,255,.03); color:var(--text); font-weight:950
     }
     .btn:hover{border-color:rgba(255,255,255,.18)}
     .btn.primary{
       border-color:rgba(107,228,255,.55);
       background: linear-gradient(135deg, rgba(107,228,255,.18), rgba(167,139,250,.12))
     }
-    .btn.good{
-      border-color:rgba(62,240,168,.55);
-      background: linear-gradient(135deg, rgba(62,240,168,.16), rgba(107,228,255,.08))
+    .btn.demo{
+      border-color:rgba(62,240,168,.60);
+      background: linear-gradient(135deg, rgba(62,240,168,.16), rgba(107,228,255,.08));
+      font-size:16px; padding:14px 18px;
     }
-    .btn.warn{
-      border-color:rgba(255,207,92,.55);
-      background: linear-gradient(135deg, rgba(255,207,92,.14), rgba(167,139,250,.06))
+    footer{padding:28px 0 44px; border-top:1px solid var(--line); margin-top:24px; color:var(--muted)}
+    .tiny{font-size:12.5px; line-height:1.55}
+    .form{display:grid; gap:10px; margin-top:10px}
+    input, textarea{
+      width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--line);
+      background: rgba(0,0,0,.22); color:var(--text); outline:none;
     }
-    .timeline{font-family:var(--mono); font-size:12.5px; color:var(--muted); max-height:260px; overflow:auto}
-    .row{display:flex; gap:10px; padding:10px 0; border-top:1px solid var(--line)}
-    .dot{width:10px; height:10px; border-radius:99px; margin-top:4px; background: rgba(107,228,255,.8)}
-    .dot.g{background: rgba(62,240,168,.8)}
-    .dot.p{background: rgba(167,139,250,.85)}
-    .dot.w{background: rgba(255,207,92,.85)}
-    pre{
-      margin:0; padding:14px; border:1px solid var(--line); border-radius:14px;
-      background: rgba(0,0,0,.22); overflow:auto; font-family:var(--mono);
-      font-size:12.5px; line-height:1.45
-    }
-    .kpi{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .chip{
-      font-family:var(--mono); font-size:12px; padding:7px 10px; border:1px solid var(--line);
-      border-radius:999px; color:var(--muted); background: rgba(0,0,0,.18)
-    }
-    .chip b{color:var(--text)}
+    textarea{min-height:110px; resize:vertical}
+    input:focus, textarea:focus{border-color:rgba(107,228,255,.55)}
+    .note{font-family:var(--mono); font-size:12px; color:rgba(159,176,192,.9)}
+    .topline{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:12px}
+    .chip{font-family:var(--mono); font-size:12px; padding:6px 10px; border:1px solid var(--line); border-radius:999px; color:var(--muted)}
+    .chip strong{color:var(--text)}
   </style>
 </head>
+
 <body>
-<header>
-  <div class="wrap">
-    <nav>
-      <a class="brand" href="./index.html" aria-label="Back to site">
-        <span class="logo"></span>
-        <div>SCIOS <span style="color:var(--muted); font-weight:900">Demo</span></div>
-      </a>
-      <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end">
-        <a class="pill" href="./index.html">Home</a>
-        <a class="pill" href="#how">What this proves</a>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<main class="wrap">
-  <h1>Example Demo: Multi-Agent Orchestration (Browser-Run)</h1>
-  <p class="muted">
-    This is a no-install investor demo showing SCIOS: a command triggers an orchestrator, which sequences multiple agents,
-    updates shared memory, and produces an auditable run log.
-  </p>
-
-  <div class="kpi">
-    <span class="chip"><b>Command Hub</b> → Orchestrator</span>
-    <span class="chip"><b>Agents</b> → Scanner / Analyzer / Reporter</span>
-    <span class="chip"><b>Artifacts</b> → run_log.json</span>
-  </div>
-
-  <div class="grid two" style="margin-top:14px">
-    <div class="card">
-      <div class="pad">
-        <h3 style="margin:0 0 8px">Command Hub</h3>
-        <p class="muted" style="margin:0 0 10px">
-          Press run to simulate a real SCIOS workflow: system scan → analysis → report.
-        </p>
-        <div class="btnRow">
-          <button class="btn primary" id="runBtn">RUN EXAMPLE DEMO</button>
-          <button class="btn warn" id="resetBtn">Reset</button>
-          <button class="btn good" id="downloadBtn" disabled>Download run_log.json</button>
+  <header>
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="#top" aria-label="SCIOS Home">
+          <span class="logo"></span>
+          <div>
+            SCIOS <small>by Willis Hartin</small>
+          </div>
+        </a>
+        <div class="navlinks">
+          <a class="pill" href="#product">Product</a>
+          <a class="pill" href="#security">Security</a>
+          <a class="pill" href="#pricing">Pricing</a>
+          <a class="pill" href="#investors">Investors</a>
+          <a class="cta" href="#contact">Investor Contact</a>
         </div>
-        <p class="muted" style="margin:10px 0 0; font-family:var(--mono); font-size:12px">
-          Mode: <span id="mode">idle</span> | Run ID: <span id="runId">—</span>
-        </p>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap hero">
+      <div class="grid heroGrid">
+        <div>
+          <div class="topline">
+            <span class="chip"><strong>Local-first</strong> execution</span>
+            <span class="chip"><strong>Privacy-first</strong> by design</span>
+            <span class="chip"><strong>Agentic</strong> operations OS</span>
+          </div>
+
+          <h1>SCIOS is the operating system for autonomous digital work.</h1>
+          <p class="sub">
+            Stop duct-taping AI tools onto brittle stacks. SCIOS orchestrates specialized agents with shared memory,
+            permission controls, and secure execution — so AI can actually operate, not just chat.
+          </p>
+
+          <div class="btnRow">
+            <a class="btn demo" href="./demo.html">EXAMPLE DEMO</a>
+            <a class="btn primary" href="#contact">Investor contact</a>
+            <a class="btn" href="#product">See what it does</a>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi"><b>Offline-capable</b> core</div>
+            <div class="kpi"><b>Modular</b> multi-agent architecture</div>
+            <div class="kpi"><b>Secure</b> local control plane</div>
+            <div class="kpi"><b>Built for</b> Kali + Android</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="pad">
+            <h3>What investors are testing</h3>
+            <p>
+              Click <b>EXAMPLE DEMO</b> to run an orchestration proof: one command triggers an orchestrator,
+              which sequences multiple agents, updates shared memory, and generates an auditable run log.
+            </p>
+            <div class="badgeRow">
+              <span class="badge good">Instant try — no install</span>
+              <span class="badge good">Run log export</span>
+              <span class="badge warn">Static-host demo (GitHub Pages)</span>
+              <span class="badge">Architecture proof</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <div class="card">
-      <div class="pad">
-        <h3 style="margin:0 0 8px">Live Timeline</h3>
-        <div id="timeline" class="timeline"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid two" style="margin-top:14px">
-    <div class="card">
-      <div class="pad">
-        <h3 style="margin:0 0 8px">Shared Memory (snapshot)</h3>
-        <pre id="memoryView">{}</pre>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="pad">
-        <h3 style="margin:0 0 8px">Final Report</h3>
-        <pre id="reportView">Press RUN EXAMPLE DEMO.</pre>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" id="how" style="margin-top:14px">
-    <div class="pad">
-      <h3 style="margin:0 0 8px">What this proves</h3>
-      <div class="grid" style="gap:8px">
-        <div class="row"><span class="dot g"></span><div><b>Orchestration:</b> one command triggers a sequenced multi-agent workflow.</div></div>
-        <div class="row"><span class="dot p"></span><div><b>Shared memory:</b> agents write into a common state object.</div></div>
-        <div class="row"><span class="dot"></span><div><b>Auditability:</b> a full run log is generated for verification.</div></div>
-      </div>
-      <p class="muted" style="margin:10px 0 0">
-        Note: GitHub Pages is static hosting. This demo runs client-side to be instantly testable by investors.
+    <div class="wrap section" id="product">
+      <h2>Product</h2>
+      <p class="lead">
+        SCIOS is a unified runtime for autonomous agents — each specialized like a department — operating under
+        a permissions model with shared memory and audited actions.
       </p>
+
+      <div class="grid features">
+        <div class="card feature">
+          <div class="tag">AGENT ORCHESTRATION</div>
+          <h3>Multi-agent “workforce” engine</h3>
+          <p>Agents coordinate through shared memory + roles, executing tasks with approvals, policy, and traceable results.</p>
+        </div>
+        <div class="card feature">
+          <div class="tag">LOCAL CONTROL PLANE</div>
+          <h3>Runs on your hardware</h3>
+          <p>Local-first execution for privacy and reliability. Remote control is a switch, not a dependency.</p>
+        </div>
+        <div class="card feature">
+          <div class="tag">MODULAR STACK</div>
+          <h3>Departments, not apps</h3>
+          <p>Cybersecurity, automation, and financial intelligence modules plug into the same core — one mind, many specialists.</p>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <p class="muted" style="margin-top:16px; font-size:12.5px">
-    © <span id="year"></span> SCIOS by Willis Hartin
-  </p>
-</main>
+    <div class="wrap section" id="security">
+      <h2>Security posture</h2>
+      <p class="lead">
+        Security is not a feature — it’s the operating constraint. SCIOS is engineered for minimal exposure,
+        controlled interfaces, and user-owned data.
+      </p>
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+      <div class="grid features">
+        <div class="card feature">
+          <div class="tag">PRIVACY</div>
+          <h3>Data stays yours</h3>
+          <p>Local memory and logs by default. Cloud integrations are optional and explicitly enabled.</p>
+        </div>
+        <div class="card feature">
+          <div class="tag">CONTROL</div>
+          <h3>Permissioned actions</h3>
+          <p>High-risk operations require policy and approvals. No silent execution. No “mystery AI.”</p>
+        </div>
+        <div class="card feature">
+          <div class="tag">LICENSING</div>
+          <h3>Offline licensing options</h3>
+          <p>Supports machine-bound or key-based licensing modes without telemetry-based validation.</p>
+        </div>
+      </div>
+    </div>
 
-  const runBtn = document.getElementById("runBtn");
-  const resetBtn = document.getElementById("resetBtn");
-  const downloadBtn = document.getElementById("downloadBtn");
-  const timelineEl = document.getElementById("timeline");
-  const memoryView = document.getElementById("memoryView");
-  const reportView = document.getElementById("reportView");
-  const modeEl = document.getElementById("mode");
-  const runIdEl = document.getElementById("runId");
+    <div class="wrap section" id="pricing">
+      <h2>Pricing</h2>
+      <p class="lead">Early access tiers. Enterprise is custom based on deployment and controls.</p>
 
-  let runLog = null;
-  let memory = {};
+      <div class="grid pricing">
+        <div class="card price">
+          <h3>Builder</h3>
+          <div class="money">$49<span class="muted">/mo</span></div>
+          <p class="muted">For solo operators and labs.</p>
+          <ul class="list">
+            <li><span class="dot"></span> Core agent runtime</li>
+            <li><span class="dot p"></span> Local command hub</li>
+            <li><span class="dot g"></span> Basic modules</li>
+          </ul>
+          <div class="btnRow"><a class="btn primary" href="#contact">Get on the list</a></div>
+        </div>
 
-  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-  const nowIso = () => new Date().toISOString();
+        <div class="card price">
+          <h3>Pro</h3>
+          <div class="money">$199<span class="muted">/mo</span></div>
+          <p class="muted">For small teams running real ops.</p>
+          <ul class="list">
+            <li><span class="dot"></span> Advanced orchestration</li>
+            <li><span class="dot p"></span> Role-based controls</li>
+            <li><span class="dot g"></span> Priority support</li>
+          </ul>
+          <div class="btnRow"><a class="btn primary" href="#contact">Request access</a></div>
+        </div>
 
-  function setMode(m){ modeEl.textContent = m; }
+        <div class="card price">
+          <h3>Enterprise</h3>
+          <div class="money">Custom</div>
+          <p class="muted">For regulated environments & bespoke deployments.</p>
+          <ul class="list">
+            <li><span class="dot"></span> Deployment + hardening</li>
+            <li><span class="dot p"></span> Custom modules</li>
+            <li><span class="dot g"></span> Audit & compliance workflow</li>
+          </ul>
+          <div class="btnRow"><a class="btn primary" href="#contact">Talk to us</a></div>
+        </div>
+      </div>
 
-  function addLine(kind, text){
-    const dotClass = kind === "good" ? "g" : kind === "purple" ? "p" : kind === "warn" ? "w" : "";
-    const row = document.createElement("div");
-    row.className = "row";
-    row.innerHTML = `<span class="dot ${dotClass}"></span><div>${text}</div>`;
-    timelineEl.appendChild(row);
-    timelineEl.scrollTop = timelineEl.scrollHeight;
-  }
+      <p class="note">Note: early-access pricing may change as productization finalizes.</p>
+    </div>
 
-  function render(){ memoryView.textContent = JSON.stringify(memory, null, 2); }
+    <div class="wrap section" id="investors">
+      <h2>Investor angle</h2>
+      <p class="lead">
+        SCIOS is positioned as an AI infrastructure platform: orchestration, security, and reliability for autonomous work.
+        The wedge is local-first operational agents; the expansion is enterprise modules.
+      </p>
 
-  function newRunId(){
-    return (Math.random().toString(16).slice(2) + Math.random().toString(16).slice(2)).slice(0, 16);
-  }
+      <div class="grid split">
+        <div class="card">
+          <div class="pad">
+            <h3>Why it wins</h3>
+            <ul class="list">
+              <li><span class="dot g"></span> Platform model: one core → many products</li>
+              <li><span class="dot"></span> Security-first: controllable interfaces</li>
+              <li><span class="dot p"></span> Local-first: reliability + privacy</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="pad">
+            <h3>What we’re raising for</h3>
+            <ul class="list">
+              <li><span class="dot"></span> Packaging into consumer-grade installer</li>
+              <li><span class="dot p"></span> Pilot deployments + proof metrics</li>
+              <li><span class="dot g"></span> Module hardening: cyber + ops + intelligence</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  async function scannerAgent(ctx){
-    addLine("purple", `<b>[scanner_agent]</b> Collecting system snapshot...`);
-    await sleep(600);
-    const result = {
-      hostname: "investor-browser",
-      platform: navigator.platform || "unknown",
-      language: navigator.language || "unknown",
-      cores: (navigator.hardwareConcurrency || null),
-      ts: nowIso()
-    };
-    return { ok:true, artifact:"system_snapshot", result };
-  }
+    <div class="wrap section" id="contact">
+      <h2>Investor contact</h2>
+      <p class="lead">If you want early access, pilots, or investor info, send a message. We respond fast.</p>
 
-  async function analyzerAgent(ctx){
-    addLine("purple", `<b>[analyzer_agent]</b> Interpreting snapshot...`);
-    await sleep(700);
-    const snap = ctx.memory.system_snapshot || {};
-    const score = (snap.cores ? Math.min(100, 40 + snap.cores * 8) : 55);
-    const result = {
-      readiness_score: score,
-      notes: [
-        "Multi-agent pipeline executed successfully.",
-        "Shared memory updated across steps.",
-        "Audit log generated for verification."
-      ],
-      ts: nowIso()
-    };
-    return { ok:true, artifact:"analysis", result };
-  }
+      <div class="grid split">
+        <div class="card">
+          <div class="pad">
+            <h3>Direct</h3>
+            <p class="muted">Fastest path: email.</p>
+            <ul class="list">
+              <li><span class="dot"></span> Email: <a href="mailto:willishartin37@gmail.com">willishartin37@gmail.com</a></li>
+              <li><span class="dot p"></span> Phone: <a href="tel:+18645686763">(864) 568-6763</a></li>
+              <li><span class="dot g"></span> Location: Greenville, SC</li>
+            </ul>
+            <div class="btnRow">
+              <a class="btn primary" href="mailto:willishartin37@gmail.com?subject=SCIOS%20Investor%20Contact&body=Name%3A%0ACompany%3A%0AWhat%20you%20want%20to%20see%20in%20the%20demo%3A%0A">Email now</a>
+              <a class="btn" href="./demo.html">Try EXAMPLE DEMO</a>
+            </div>
+          </div>
+        </div>
 
-  async function reporterAgent(ctx){
-    addLine("purple", `<b>[reporter_agent]</b> Generating report...`);
-    await sleep(700);
-    const a = ctx.memory.analysis || {};
-    const report = [
-      "SCIOS ORCHESTRATION REPORT",
-      "--------------------------",
-      `Run ID: ${ctx.run_id}`,
-      `Timestamp: ${nowIso()}`,
-      "",
-      `Readiness Score: ${a.readiness_score ?? "n/a"}`,
-      "",
-      "Key Notes:",
-      ...(a.notes || []).map(x => `- ${x}`),
-      "",
-      "Artifacts:",
-      "- system_snapshot",
-      "- analysis",
-      "- run_log.json"
-    ].join("\n");
-    return { ok:true, artifact:"report", result:{ report, ts: nowIso() } };
-  }
+        <div class="card">
+          <div class="pad">
+            <h3>Quick message</h3>
+            <form class="form" onsubmit="return sendEmail(event)">
+              <input id="name" placeholder="Your name" required />
+              <input id="company" placeholder="Company (optional)" />
+              <input id="email" placeholder="Your email" type="email" required />
+              <textarea id="message" placeholder="What do you want SCIOS to do for you?" required></textarea>
+              <button class="btn primary" type="submit">Send via email</button>
+              <div class="note">This form uses your device email app (no server required).</div>
+            </form>
+          </div>
+        </div>
 
-  async function orchestrator(){
-    const run_id = newRunId();
-    runIdEl.textContent = run_id;
+      </div>
+    </div>
 
-    memory = {
-      run_id,
-      task: "example_demo.system_health_report",
-      created_ts: nowIso(),
-      timeline: []
-    };
-    runLog = {
-      run_id,
-      task: memory.task,
-      started_ts: memory.created_ts,
-      steps: [],
-      ok: false,
-      finished_ts: null,
-      artifacts: []
-    };
+    <div class="wrap">
+      <footer>
+        <div class="tiny">
+          © <span id="year"></span> SCIOS by Willis Hartin. SCIOS is a privacy-first autonomous agent operating system.
+          <br/>Built for real-world execution. No hype. Just infrastructure.
+        </div>
+      </footer>
+    </div>
+  </main>
 
-    timelineEl.innerHTML = "";
-    reportView.textContent = "Running...";
-    downloadBtn.disabled = true;
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    setMode("running");
-    addLine("good", `<b>[command_hub]</b> Submitted task: <span style="font-family:var(--mono)">${memory.task}</span>`);
-    addLine("good", `<b>[orchestrator]</b> Starting run_id: <span style="font-family:var(--mono)">${run_id}</span>`);
-    render();
+    function sendEmail(e){
+      e.preventDefault();
+      const name = encodeURIComponent(document.getElementById("name").value.trim());
+      const company = encodeURIComponent(document.getElementById("company").value.trim());
+      const email = encodeURIComponent(document.getElementById("email").value.trim());
+      const message = encodeURIComponent(document.getElementById("message").value.trim());
 
-    const ctx = { run_id, memory };
+      const subject = encodeURIComponent("SCIOS Investor Contact / Pilot Request");
+      const body =
+        "Name: " + decodeURIComponent(name) + "%0A" +
+        "Company: " + decodeURIComponent(company) + "%0A" +
+        "Email: " + decodeURIComponent(email) + "%0A%0A" +
+        decodeURIComponent(message) + "%0A%0A" +
+        "Sent from SCIOS website.";
 
-    async function step(name, fn){
-      const stepObj = { agent: name, started_ts: nowIso(), finished_ts: null, ok: false, output: null };
-      runLog.steps.push(stepObj);
-      memory.timeline.push({ agent: name, event: "start", ts: stepObj.started_ts });
-      render();
-
-      try{
-        const out = await fn(ctx);
-        stepObj.ok = !!out.ok;
-        stepObj.output = out;
-        stepObj.finished_ts = nowIso();
-
-        if(out && out.artifact){
-          memory[out.artifact] = out.result;
-          runLog.artifacts.push({ type: out.artifact, created_ts: stepObj.finished_ts });
-        }
-
-        memory.timeline.push({ agent: name, event: "finish", ok: stepObj.ok, ts: stepObj.finished_ts });
-        addLine("good", `<b>[${name}]</b> Completed ✓`);
-        render();
-        return out;
-      }catch(e){
-        stepObj.ok = false;
-        stepObj.output = { ok:false, error: String(e) };
-        stepObj.finished_ts = nowIso();
-        memory.timeline.push({ agent: name, event: "finish", ok: false, ts: stepObj.finished_ts });
-        addLine("warn", `<b>[${name}]</b> Failed ✗ (${String(e)})`);
-        render();
-        throw e;
-      }
+      window.location.href = "mailto:willishartin37@gmail.com?subject=" + subject + "&body=" + body;
+      return false;
     }
-
-    try{
-      await step("scanner_agent", scannerAgent);
-      await step("analyzer_agent", analyzerAgent);
-      const rep = await step("reporter_agent", reporterAgent);
-
-      reportView.textContent = rep.result.report;
-
-      runLog.ok = true;
-      runLog.finished_ts = nowIso();
-      setMode("completed");
-      addLine("good", `<b>[orchestrator]</b> Run completed ✓`);
-      downloadBtn.disabled = false;
-      runBtn.disabled = false;
-    }catch(e){
-      runLog.ok = false;
-      runLog.finished_ts = nowIso();
-      setMode("failed");
-      reportView.textContent = "Demo failed. Reset and run again.";
-      downloadBtn.disabled = false;
-      runBtn.disabled = false;
-    }
-  }
-
-  runBtn.addEventListener("click", async () => {
-    runBtn.disabled = true;
-    await orchestrator();
-  });
-
-  resetBtn.addEventListener("click", () => {
-    setMode("idle");
-    runIdEl.textContent = "—";
-    timelineEl.innerHTML = "";
-    memory = {};
-    runLog = null;
-    memoryView.textContent = "{}";
-    reportView.textContent = "Press RUN EXAMPLE DEMO.";
-    downloadBtn.disabled = true;
-    runBtn.disabled = false;
-  });
-
-  downloadBtn.addEventListener("click", () => {
-    if(!runLog){
-      alert("No run log yet. Run the demo first.");
-      return;
-    }
-    const blob = new Blob([JSON.stringify(runLog, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "run_log.json";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  });
-</script>
+  </script>
 </body>
 </html>
