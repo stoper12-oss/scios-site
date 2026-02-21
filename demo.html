@@ -1,22 +1,39 @@
-k<!-- ADD THIS inside console section AFTER console__tabs -->
+<!-- DEMO HTML v2 WITH COMMAND INPUT + PERMISSIONS -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SCIOS Demo</title>
+<link rel="stylesheet" href="./demo.css">
+</head>
+<body>
 
-<div class="console__input">
-  <input id="cmdInput" placeholder="Enter command (example: run security audit)" />
-  <button id="cmdSend">Execute</button>
+<h1>SCIOS Command Hub</h1>
+
+<div class="controls">
+<button id="runBtn">RUN SYSTEM</button>
+<button id="resetBtn">RESET</button>
+<button id="downloadBtn">DOWNLOAD LOG</button>
 </div>
 
-<!-- ADD permissions panel BELOW console card -->
-
-<div class="card span2">
-  <div class="card__head">
-    <div>
-      <div class="card__title">Permissions / Approvals</div>
-      <div class="card__sub">Operator approval required for sensitive actions</div>
-    </div>
-    <div class="badge">POLICY</div>
-  </div>
-
-  <div class="permGrid" id="permGrid">
-    <div class="permItem">No pending approvals</div>
-  </div>
+<!-- NEW COMMAND INPUT -->
+<div class="cmdBox">
+<input id="cmdInput" placeholder="Enter command (ex: analyze system)">
+<button id="cmdSend">EXECUTE</button>
 </div>
+
+<!-- NEW PERMISSIONS PANEL -->
+<div class="permPanel">
+<h3>Permissions</h3>
+<label><input type="checkbox" checked> Allow Security Agent</label>
+<label><input type="checkbox" checked> Allow Finance Agent</label>
+<label><input type="checkbox" checked> Allow Ops Agent</label>
+<label><input type="checkbox" checked> Allow R&D Agent</label>
+</div>
+
+<pre id="terminal"></pre>
+
+<script src="./demo.js"></script>
+</body>
+</html>
