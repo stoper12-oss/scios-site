@@ -13,7 +13,6 @@
 
 <div class="sidebar">
 <h2>SCIOS</h2>
-
 <button class="nav active">Command Hub</button>
 <button class="nav">Agents</button>
 <button class="nav">Memory</button>
@@ -26,20 +25,25 @@
 <div class="top">
 <div>
 <div class="title">Command Hub</div>
-<div class="subtitle">Orchestrator console</div>
+<div class="subtitle">Orchestrator runtime</div>
+</div>
+<button id="runBtn" class="primary">Run System</button>
 </div>
 
-<button id="runBtn" class="primary">Run System</button>
+<div class="metrics">
+<div class="metric"><div>Agents</div><b id="mAgents">0</b></div>
+<div class="metric"><div>Tasks</div><b id="mTasks">0</b></div>
+<div class="metric"><div>Artifacts</div><b id="mArtifacts">0</b></div>
 </div>
 
 <div class="cards">
 
 <div class="card">
 <h3>Agents</h3>
-<div class="agent">Security Agent <span id="a1">idle</span></div>
-<div class="agent">Finance Agent <span id="a2">idle</span></div>
-<div class="agent">Operations Agent <span id="a3">idle</span></div>
-<div class="agent">R&D Agent <span id="a4">idle</span></div>
+<div class="agent">Security <span id="a1">idle</span></div>
+<div class="agent">Finance <span id="a2">idle</span></div>
+<div class="agent">Operations <span id="a3">idle</span></div>
+<div class="agent">R&D <span id="a4">idle</span></div>
 </div>
 
 <div class="card">
@@ -54,13 +58,11 @@
 
 <div class="card">
 <h3>Command Input</h3>
-<input id="cmdInput" placeholder="Type command">
+<input id="cmdInput" placeholder="Enter command">
 <button id="cmdSend">Execute</button>
 </div>
 
-<div class="terminal">
-<pre id="terminal"></pre>
-</div>
+<div class="terminal"><pre id="terminal"></pre></div>
 
 </div>
 </div>
