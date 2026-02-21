@@ -10,11 +10,11 @@ export function commandModalHTML(){
       <button class="btn" data-close="1">Close</button>
     </div>
     <div class="modalBody">
-      <input id="cmdInput" style="width:100%;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.25);color:var(--text);font-weight:900;outline:none"
-        placeholder="Try: full.run  |  security.scan  |  finance.snapshot  |  ops.plan  |  rnd.experiment  |  export" />
+      <input id="cmdInput" style="width:100%;padding:12px;border-radius:14px;border:1px solid var(--line);background:color-mix(in srgb, var(--panel2) 60%, rgba(0,0,0,.10));color:var(--text);font-weight:900;outline:none"
+        placeholder="Try: full.run  |  security.audit  |  finance.snapshot  |  ops.plan  |  rnd.experiment  |  export" />
       <div class="grid2" style="margin-top:12px;">
         <button class="btn" data-cmd="full.run">full.run</button>
-        <button class="btn" data-cmd="security.scan">security.scan</button>
+        <button class="btn" data-cmd="security.audit">security.audit</button>
         <button class="btn" data-cmd="finance.snapshot">finance.snapshot</button>
         <button class="btn" data-cmd="ops.plan">ops.plan</button>
         <button class="btn" data-cmd="rnd.experiment">rnd.experiment</button>
@@ -47,7 +47,7 @@ export function approvalsModalHTML(state){
     <div class="modalHead">
       <div>
         <div class="modalTitle">Approvals & Permissions</div>
-        <div class="modalSub">Enterprise control signal: approvals gate sensitive actions.</div>
+        <div class="modalSub">Operator control: approvals gate sensitive actions.</div>
       </div>
       <button class="btn" data-close="1">Close</button>
     </div>
@@ -62,14 +62,14 @@ export function approvalsModalHTML(state){
       <div class="art" style="margin-top:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
         <div>
           <div class="artK">Require approvals for gated actions</div>
-          <div class="muted small">When ON, sensitive steps prompt you to approve/deny.</div>
+          <div class="muted small">When ON, sensitive steps prompt approve/deny.</div>
         </div>
         <input type="checkbox" id="approvalsOn" ${state.approvalsOn ? "checked":""}/>
       </div>
 
       <div class="art" style="margin-top:10px;">
         <div class="artK">Deployment Mode</div>
-        <div class="muted small">Local-first by default; hybrid is optional for real integrations.</div>
+        <div class="muted small">Local-first default; hybrid optional for integrations.</div>
         <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
           <button class="btn" id="depLocal">Local-first</button>
           <button class="btn" id="depHybrid">Hybrid</button>

@@ -1,12 +1,6 @@
-export function pushLine(state, line){
-  state.terminal.push(line);
+export function pushLine(state, line, level="info"){
+  state.terminal.push({ ts: new Date().toISOString(), level, line });
   state.kpis.audit++;
-}
-
-export function terminalText(state){
-  const max = 220;
-  const slice = state.terminal.slice(-max);
-  return slice.join("\n");
 }
 
 export function tl(state, dot, text){

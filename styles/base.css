@@ -1,111 +1,70 @@
-#appRoot{
-  height:100vh;
-  display:grid;
-  grid-template-rows: 62px 1fr;
+:root{
+  --bg0:#0a1020;
+  --bg1:#0b1326;
+
+  --panel: rgba(22, 34, 56, .80);
+  --panel2: rgba(28, 44, 70, .64);
+
+  --text:#f3f7ff;
+  --muted:#b7c7de;
+
+  --line:rgba(255,255,255,.14);
+  --line2:rgba(255,255,255,.22);
+
+  --a:#6be4ff;
+  --b:#a78bfa;
+  --g:#34d399;
+  --y:#fbbf24;
+  --r:#fb7185;
+
+  --shadow: 0 22px 70px rgba(0,0,0,.42);
+  --radius:18px;
+
+  --mono: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  --sans: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
 }
 
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 18px;
-  border-bottom:1px solid var(--line);
-  backdrop-filter: blur(14px);
-  background: linear-gradient(to bottom, rgba(7,11,16,.82), rgba(7,11,16,.45));
-}
+*{box-sizing:border-box}
+html,body{height:100%}
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:950;
-  letter-spacing:.2px;
-}
-.logo{
-  width:36px;height:36px;border-radius:14px;
-  background: conic-gradient(from 210deg, var(--a), var(--b), var(--g), var(--a));
-  box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 18px 45px rgba(0,0,0,.25);
-}
-.brandTitle{font-size:15px}
-.brandSub{font-size:12.5px;color:var(--muted);font-weight:800;margin-top:1px}
-
-.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-.btn{
-  border:1px solid var(--line);
-  background: rgba(18,28,45,.45);
+body{
+  margin:0;
+  font-family:var(--sans);
   color:var(--text);
-  padding:10px 12px;
-  border-radius:12px;
-  font-weight:950;
-  cursor:pointer;
-}
-.btn:hover{border-color:var(--line2)}
-.btnPrimary{
-  border-color: color-mix(in srgb, var(--a) 55%, transparent);
-  background: linear-gradient(135deg, rgba(107,228,255,.18), rgba(167,139,250,.10));
-}
-.btnGood{
-  border-color: color-mix(in srgb, var(--g) 55%, transparent);
-  background: linear-gradient(135deg, rgba(52,211,153,.18), rgba(107,228,255,.08));
-}
-.btnWarn{
-  border-color: color-mix(in srgb, var(--y) 55%, transparent);
-  background: linear-gradient(135deg, rgba(251,191,36,.16), rgba(167,139,250,.06));
-}
-.pill{
-  border:1px solid var(--line);
-  border-radius:999px;
-  padding:8px 10px;
-  font-size:12px;
-  font-weight:900;
-  color:var(--muted);
-  background: rgba(18,28,45,.35);
-}
-
-.workspace{
-  display:grid;
-  grid-template-columns: 260px 1fr 360px;
-  gap:14px;
-  padding:14px;
-  height: calc(100vh - 62px);
-}
-
-.sidebar{
-  border:1px solid var(--line);
-  border-radius: var(--radius);
-  background: linear-gradient(180deg, rgba(18,28,45,.70), rgba(18,28,45,.40));
-  box-shadow: var(--shadow);
+  background:
+    radial-gradient(1200px 700px at 12% 0%, rgba(107,228,255,.18), transparent 58%),
+    radial-gradient(1000px 700px at 92% 10%, rgba(167,139,250,.18), transparent 58%),
+    radial-gradient(900px 700px at 50% 100%, rgba(52,211,153,.14), transparent 62%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
   overflow:hidden;
 }
-.sideHead{
-  padding:14px 14px 10px;
-  border-bottom:1px solid var(--line);
-}
-.nav{
-  display:flex;
-  flex-direction:column;
-  padding:10px;
-  gap:8px;
-}
-.navItem{
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:11px 12px;
-  background: rgba(18,28,45,.32);
-  color:var(--muted);
-  font-weight:900;
-  cursor:pointer;
-}
-.navItem.active{border-color: color-mix(in srgb, var(--a) 45%, transparent); color: var(--text); box-shadow: 0 0 0 4px rgba(107,228,255,.08);}
 
-.centerCol, .rightCol{
-  display:grid;
-  grid-template-rows: auto 1fr;
-  gap:14px;
-  min-width: 0;
-}
+a{color:inherit;text-decoration:none}
+button, input { font-family: inherit; }
+.mono{font-family:var(--mono)}
+.muted{color:var(--muted)}
+.small{font-size:12px}
 
-@media (max-width: 1100px){
-  body{overflow:auto}
-  .workspace{grid-template-columns:1fr; height:auto}
+/* Daylight mode */
+body.light{
+  --bg0:#f6f8ff;
+  --bg1:#eef2ff;
+
+  --panel: rgba(255,255,255,.86);
+  --panel2: rgba(255,255,255,.70);
+
+  --text:#071023;
+  --muted:#334a66;
+
+  --line:rgba(7,16,35,.14);
+  --line2:rgba(7,16,35,.20);
+
+  --shadow: 0 18px 55px rgba(5,20,45,.12);
+}
+body.light{
+  background:
+    radial-gradient(1200px 700px at 12% 0%, rgba(107,228,255,.20), transparent 62%),
+    radial-gradient(1000px 700px at 92% 10%, rgba(167,139,250,.18), transparent 62%),
+    radial-gradient(900px 700px at 50% 100%, rgba(52,211,153,.14), transparent 65%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
 }
