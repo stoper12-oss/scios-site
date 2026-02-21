@@ -1,39 +1,70 @@
-<!-- DEMO HTML v2 WITH COMMAND INPUT + PERMISSIONS -->
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SCIOS Demo</title>
-<link rel="stylesheet" href="./demo.css">
+<title>SCIOS Command Hub</title>
+<link rel="stylesheet" href="demo.css">
 </head>
+
 <body>
 
-<h1>SCIOS Command Hub</h1>
+<div class="app">
 
-<div class="controls">
-<button id="runBtn">RUN SYSTEM</button>
-<button id="resetBtn">RESET</button>
-<button id="downloadBtn">DOWNLOAD LOG</button>
+<div class="sidebar">
+<h2>SCIOS</h2>
+
+<button class="nav active">Command Hub</button>
+<button class="nav">Agents</button>
+<button class="nav">Memory</button>
+<button class="nav">Artifacts</button>
+<button class="nav">Settings</button>
 </div>
 
-<!-- NEW COMMAND INPUT -->
-<div class="cmdBox">
-<input id="cmdInput" placeholder="Enter command (ex: analyze system)">
-<button id="cmdSend">EXECUTE</button>
+<div class="main">
+
+<div class="top">
+<div>
+<div class="title">Command Hub</div>
+<div class="subtitle">Orchestrator console</div>
 </div>
 
-<!-- NEW PERMISSIONS PANEL -->
-<div class="permPanel">
+<button id="runBtn" class="primary">Run System</button>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Agents</h3>
+<div class="agent">Security Agent <span id="a1">idle</span></div>
+<div class="agent">Finance Agent <span id="a2">idle</span></div>
+<div class="agent">Operations Agent <span id="a3">idle</span></div>
+<div class="agent">R&D Agent <span id="a4">idle</span></div>
+</div>
+
+<div class="card">
 <h3>Permissions</h3>
-<label><input type="checkbox" checked> Allow Security Agent</label>
-<label><input type="checkbox" checked> Allow Finance Agent</label>
-<label><input type="checkbox" checked> Allow Ops Agent</label>
-<label><input type="checkbox" checked> Allow R&D Agent</label>
+<label><input type="checkbox" checked> Security</label>
+<label><input type="checkbox" checked> Finance</label>
+<label><input type="checkbox" checked> Ops</label>
+<label><input type="checkbox" checked> R&D</label>
 </div>
 
-<pre id="terminal"></pre>
+</div>
 
-<script src="./demo.js"></script>
+<div class="card">
+<h3>Command Input</h3>
+<input id="cmdInput" placeholder="Type command">
+<button id="cmdSend">Execute</button>
+</div>
+
+<div class="terminal">
+<pre id="terminal"></pre>
+</div>
+
+</div>
+</div>
+
+<script src="demo.js"></script>
 </body>
 </html>
