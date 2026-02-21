@@ -1,59 +1,42 @@
 const term = document.getElementById("terminal");
 const runBtn = document.getElementById("runBtn");
-const resetBtn = document.getElementById("resetBtn");
-const downloadBtn = document.getElementById("downloadBtn");
-
 const cmdInput = document.getElementById("cmdInput");
 const cmdSend = document.getElementById("cmdSend");
 
-let log = [];
+const a1=document.getElementById("a1");
+const a2=document.getElementById("a2");
+const a3=document.getElementById("a3");
+const a4=document.getElementById("a4");
 
-function write(line){
-term.textContent += line + "\n";
-log.push(line);
-}
+function write(t){term.textContent+=t+"\n";term.scrollTop=term.scrollHeight}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
 
-runBtn.onclick = async ()=>{
-write("Booting SCIOS...");
+runBtn.onclick=async()=>{
+write("Booting SCIOS…");
 await sleep(500);
 
-write("Loading agents...");
-await sleep(500);
+a1.textContent="running";write("Security agent deployed");
+await sleep(600);
 
-write("Security agent running");
-await sleep(500);
+a2.textContent="running";write("Finance agent deployed");
+await sleep(600);
 
-write("Finance agent running");
-await sleep(500);
+a3.textContent="running";write("Operations agent deployed");
+await sleep(600);
 
-write("Operations agent running");
-await sleep(500);
+a4.textContent="running";write("R&D agent deployed");
+await sleep(600);
 
-write("R&D agent running");
-await sleep(500);
+write("Generating report…");
+await sleep(800);
 
 write("Run complete.");
 };
 
-cmdSend.onclick = ()=>{
-const cmd = cmdInput.value.trim();
-if(!cmd) return;
-write("> " + cmd);
-write("Executing task with agents...");
+cmdSend.onclick=()=>{
+const c=cmdInput.value.trim();
+if(!c)return;
+write("> "+c);
+write("Task routed to agents");
 cmdInput.value="";
 };
-
-resetBtn.onclick = ()=>{
-term.textContent="";
-log=[];
-};
-
-downloadBtn.onclick = ()=>{
-const blob = new Blob([log.join("\n")]);
-const a = document.createElement("a");
-a.href = URL.createObjectURL(blob);
-a.download="run_log.txt";
-a.click();
-};
-
-function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
