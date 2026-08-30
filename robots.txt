@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://stoper12-oss.github.io/scios-site/sitemap.xml
+Sitemap: https://scios.site/sitemap.xml

@@ -6,9 +6,9 @@ The site explains the platform, its optional YouTube upload integration, and its
 
 ## Public pages
 
-- [SCIOS home](https://stoper12-oss.github.io/scios-site/)
-- [Privacy Policy](https://stoper12-oss.github.io/scios-site/privacy.html)
-- [Terms of Service](https://stoper12-oss.github.io/scios-site/terms.html)
+- [SCIOS home](https://scios.site/)
+- [Privacy Policy](https://scios.site/privacy.html)
+- [Terms of Service](https://scios.site/terms.html)
 
 ## Local preview
 
