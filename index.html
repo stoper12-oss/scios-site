@@ -1,22 +1,93 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SCIOS by Willis Hartin — Platform Demo</title>
-  <meta name="description" content="SCIOS Platform Demo: orchestration, agents, approvals, telemetry, and investor-ready output." />
-
-  <link rel="stylesheet" href="./styles/base.css" />
-  <link rel="stylesheet" href="./styles/layout.css" />
-  <link rel="stylesheet" href="./styles/panels.css" />
-  <link rel="stylesheet" href="./styles/effects.css" />
-  <link rel="stylesheet" href="./styles/polish.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="SCIOS is an evidence-bound automation platform for governed workflows, operational oversight, and operator-authorized publishing.">
+  <meta property="og:title" content="SCIOS | Governed automation for real operations">
+  <meta property="og:description" content="Coordinate specialized services, review evidence, and keep consequential actions under explicit controls.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stoper12-oss.github.io/scios-site/">
+  <meta name="twitter:card" content="summary">
+  <title>SCIOS | Governed automation for real operations</title>
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
 </head>
-
 <body>
-  <div id="bootRoot"></div>
-  <div id="appRoot"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="nav-shell">
+      <a class="brand" href="./" aria-label="SCIOS home"><span class="brand-mark" aria-hidden="true"><span></span></span><span><strong>SCIOS</strong><small>by Willis Hartin</small></span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" data-menu><span class="sr-only">Open navigation</span><i></i><i></i><i></i></button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-nav>
+        <a href="#platform">Platform</a><a href="#workflow">How it works</a><a href="#youtube">YouTube access</a><a href="#trust">Trust</a><a class="nav-cta" href="mailto:support@scios.app?subject=SCIOS%20access%20inquiry">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <script type="module" src="./app/app.js"></script>
+  <main id="main">
+    <section class="hero section-shell">
+      <div class="hero-copy" data-reveal>
+        <p class="eyebrow"><span></span> Evidence-bound automation</p>
+        <h1>Run complex digital operations with a visible chain of control.</h1>
+        <p class="hero-lede">SCIOS coordinates specialized services for research, governance, deployment, and operational monitoring. It keeps uncertain evidence labeled, routes consequential actions through policy gates, and reports what actually happened.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#platform">Explore the platform <span aria-hidden="true">→</span></a><a class="button button-secondary" href="demo.html">View interface preview</a></div>
+        <p class="preview-note">The interface preview uses simulated display data and does not connect to a live SCIOS runtime.</p>
+      </div>
+      <div class="hero-console" aria-label="Illustration of a governed SCIOS workflow" data-reveal>
+        <div class="console-bar"><span></span><span></span><span></span><small>governed run / evidence view</small></div>
+        <div class="console-body">
+          <div class="run-row active"><b>01</b><span><strong>Intent received</strong><small>Operator-defined objective</small></span><em>recorded</em></div><div class="run-line"></div>
+          <div class="run-row active"><b>02</b><span><strong>Evidence reviewed</strong><small>Sources and assumptions separated</small></span><em>verified</em></div><div class="run-line"></div>
+          <div class="run-row active"><b>03</b><span><strong>Policy gates</strong><small>Ethics, legal, authorization, council</small></span><em>passed</em></div><div class="run-line muted-line"></div>
+          <div class="run-row pending"><b>04</b><span><strong>Bounded execution</strong><small>Action waits for its required authority</small></span><em>controlled</em></div>
+          <div class="console-result"><span class="result-dot"></span><span><small>Decision state</small><strong>Ready for operator review</strong></span><code>audit: retained</code></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof-strip" aria-label="SCIOS operating principles"><div class="section-shell proof-grid">
+      <div><strong>Local-first</strong><span>Core services can run on operator-controlled infrastructure.</span></div><div><strong>Evidence-aware</strong><span>Observed facts, estimates, and missing inputs stay distinct.</span></div><div><strong>Policy-gated</strong><span>High-impact actions pass through explicit checks.</span></div><div><strong>Auditable</strong><span>Decisions and observed outcomes remain inspectable.</span></div>
+    </div></section>
+
+    <section class="content-section section-shell" id="platform">
+      <div class="section-heading" data-reveal><p class="eyebrow"><span></span> One operating surface</p><h2>From objective to observed outcome.</h2><p>SCIOS is designed as a control plane—not a promise engine. Each capability reports its source, current state, and limits so an operator can make informed decisions.</p></div>
+      <div class="feature-grid">
+        <article class="feature-card feature-wide" data-reveal><div class="feature-icon">⌁</div><div><p class="card-kicker">Executive command</p><h3>See the system before steering it.</h3><p>Review service health, opportunity signals, venture states, scheduler controls, and durable decision records from one responsive dashboard.</p></div><div class="mini-dashboard" aria-hidden="true"><span></span><span></span><span></span><i></i><i></i></div></article>
+        <article class="feature-card" data-reveal><div class="feature-icon">◇</div><p class="card-kicker">Governance</p><h3>Checks before consequences.</h3><p>Ethical, legal, authorization, and council evaluations remain separate from execution. New ventures can enter a bounded pilot without prior financial history; verified financial outcomes are evaluated after the pilot.</p></article>
+        <article class="feature-card" data-reveal><div class="feature-icon">◷</div><p class="card-kicker">Measured pilots</p><h3>Learn from real operation.</h3><p>Cold-start ventures can be bounded to a defined pilot window, with final review based on recorded campaign, conversion, revenue, and subscription evidence.</p></article>
+        <article class="feature-card" data-reveal><div class="feature-icon">›_</div><p class="card-kicker">Command interface</p><h3>One governed conversation.</h3><p>The terminal and mobile dashboard share the same routed command interface, session context, and action-reporting boundary.</p></article>
+      </div>
+    </section>
+
+    <section class="content-section workflow-section" id="workflow"><div class="section-shell">
+      <div class="section-heading split-heading" data-reveal><div><p class="eyebrow"><span></span> How it works</p><h2>A workflow you can inspect.</h2></div><p>SCIOS separates discovery, evaluation, execution, and learning. That separation prevents a generated idea from being mistaken for an observed result.</p></div>
+      <ol class="steps"><li data-reveal><span>01</span><div><h3>Define the objective</h3><p>The operator supplies an intent, constraints, and any known evidence. Unknowns remain visible.</p></div></li><li data-reveal><span>02</span><div><h3>Evaluate the path</h3><p>Specialized services analyze the proposal and policy gates determine whether it can proceed, pause, or stop.</p></div></li><li data-reveal><span>03</span><div><h3>Execute within bounds</h3><p>Approved integrations perform the requested action and return their actual provider response.</p></div></li><li data-reveal><span>04</span><div><h3>Measure and reevaluate</h3><p>Observed outcomes are written back to durable memory for later review and better-grounded decisions.</p></div></li></ol>
+    </div></section>
+
+    <section class="content-section section-shell" id="youtube"><div class="integration-card" data-reveal>
+      <div class="integration-copy"><p class="eyebrow"><span></span> Optional YouTube integration</p><h2>Publish to an authorized channel—with a limited permission.</h2><p>When an operator connects a Google account, SCIOS requests the <code>youtube.upload</code> OAuth scope only so its configured commercial workflow can upload video files to that operator’s YouTube channel.</p>
+        <ul class="check-list"><li>SCIOS does not ask for a Google or YouTube password.</li><li>OAuth credentials and refresh tokens are stored in the operator-controlled SCIOS environment.</li><li>SCIOS does not sell Google user data or use it for advertising profiles.</li><li>Access can be revoked from the Google Account permissions page at any time.</li></ul>
+        <div class="inline-links"><a href="privacy.html#google-data">How Google data is handled</a><a href="https://myaccount.google.com/permissions" rel="noopener noreferrer">Revoke Google access ↗</a></div>
+      </div>
+      <div class="scope-card" aria-label="YouTube permission summary"><span class="scope-label">Requested permission</span><code>youtube.upload</code><dl><div><dt>Purpose</dt><dd>Upload configured video content</dd></div><div><dt>Account access</dt><dd>OAuth consent only</dd></div><div><dt>Password access</dt><dd>Never</dd></div><div><dt>Revocable</dt><dd>Yes, at any time</dd></div></dl></div>
+    </div></section>
+
+    <section class="content-section trust-section" id="trust"><div class="section-shell trust-grid">
+      <div class="section-heading" data-reveal><p class="eyebrow"><span></span> Trust by design</p><h2>Clear limits are part of the product.</h2><p>SCIOS reports configuration gaps, unavailable providers, and incomplete evidence instead of converting them into claims of success.</p></div>
+      <div class="trust-points"><article data-reveal><span>01</span><h3>No invented outcomes</h3><p>Forecasts and operator estimates are labeled separately from observed customer, revenue, or deployment data.</p></article><article data-reveal><span>02</span><h3>Operator-controlled integrations</h3><p>External services work only when the operator configures the required credentials and grants the relevant authority.</p></article><article data-reveal><span>03</span><h3>Revocable access</h3><p>Third-party authorization can be withdrawn, and local credential files can be removed by the operator.</p></article><article data-reveal><span>04</span><h3>Published policies</h3><p>Privacy and terms are publicly available without signing in and apply to the SCIOS application and website.</p></article></div>
+    </div></section>
+
+    <section class="cta-section section-shell" data-reveal><div><p class="eyebrow"><span></span> Build with control</p><h2>Bring governed automation into your operation.</h2><p>Ask about local deployment, operator access, integrations, or the current pilot program.</p></div><a class="button button-primary" href="mailto:support@scios.app?subject=SCIOS%20access%20inquiry">Contact SCIOS <span aria-hidden="true">→</span></a></section>
+  </main>
+
+  <footer class="site-footer"><div class="section-shell footer-grid">
+    <div><a class="brand footer-brand" href="./"><span class="brand-mark" aria-hidden="true"><span></span></span><span><strong>SCIOS</strong><small>by Willis Hartin</small></span></a><p>Evidence-bound automation for governed digital operations.</p></div>
+    <div><strong>Product</strong><a href="#platform">Platform</a><a href="#workflow">How it works</a><a href="#youtube">YouTube access</a><a href="demo.html">Interface preview</a></div>
+    <div><strong>Legal</strong><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="https://myaccount.google.com/permissions" rel="noopener noreferrer">Revoke Google access</a></div>
+    <div><strong>Contact</strong><a href="mailto:support@scios.app">support@scios.app</a><a href="https://github.com/stoper12-oss/scios-site" rel="noopener noreferrer">GitHub repository ↗</a></div>
+  </div><div class="section-shell footer-bottom"><span>© <span data-year>2026</span> SCIOS by Willis Hartin.</span><span>External integrations operate under their respective provider terms.</span></div></footer>
 </body>
 </html>
