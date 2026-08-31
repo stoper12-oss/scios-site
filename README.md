@@ -1,12 +1,17 @@
 # SCIOS public website
 
-This repository publishes the public website for SCIOS by Willis Hartin, an evidence-bound automation platform for governed digital operations.
+This repository publishes the public customer website for SCIOS by Willis Hartin, a private, evidence-bound service for governed digital operations.
 
-The site explains the platform, its optional YouTube upload integration, and its operating boundaries. It also publishes the Privacy Policy and Terms of Service required for an informed integration-consent flow. The linked interface preview uses simulated display data and is not a live SCIOS runtime.
+The website presents paid SCIOS services, capabilities, venture add-ons, custom-service requests, and service-specific customer access. It also publishes the Privacy Policy and Terms of Service, including the disclosures required for authorized third-party connections.
 
 ## Public pages
 
 - [SCIOS home](https://scios.site/)
+- [Services and subscriptions](https://scios.site/services.html)
+- [Capabilities](https://scios.site/capabilities.html)
+- [Venture add-ons](https://scios.site/addons.html)
+- [Custom services](https://scios.site/custom-services.html)
+- [Customer access](https://scios.site/customer-access.html)
 - [Privacy Policy](https://scios.site/privacy.html)
 - [Terms of Service](https://scios.site/terms.html)
 
