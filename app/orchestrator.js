@@ -130,7 +130,7 @@ async function agentOps(state, gate){
     "Inventory current tools + workflows",
     "Select 3 high-ROI automations",
     "Assign agent permissions + approval gates",
-    "Run local-first pilot (7 days)",
+    "Run local-first workflow",
     "Review audit + artifacts",
     "Scale to teams and departments"
   ];
