@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-15T00:00:00Z",
+  "updated_at": "2026-09-15T10:18:00Z",
   "currency": "usd",
   "products": [
     {
@@ -13,12 +13,13 @@
       "featured": true,
       "active": true,
       "price_label": "$5 one-time",
-      "description": "One-time purchase. Unlimited use for life on project after project.",
+      "description": "One-time purchase. Perpetual use of AutoBuild 5.1, with versions 5.2, 5.3, 5.4 and bug-fix releases included.",
       "features": [
-        "Runs on your machine with your files",
+        "Runs locally with your files",
         "Scans and understands existing project folders",
         "Repairs dependencies and build problems",
-        "Builds and tests websites, apps, and software",
+        "Builds and tests supported websites, apps, and software",
+        "Versions 5.2, 5.3, 5.4 and bug fixes included",
         "No subscription or monthly fee"
       ],
       "checkout_url": "https://buy.stripe.com/8x200ifSF6PTaYH4Hy1Fe0b",
