@@ -1,6 +1,28 @@
 {
   "schema_version": 1,
-  "updated_at": null,
+  "updated_at": "2026-09-15T00:00:00Z",
   "currency": "usd",
-  "products": []
+  "products": [
+    {
+      "id": "autobuild",
+      "stripe_product_id": "prod_VGLSnHsL73goPW",
+      "stripe_price_id": "price_1UFolyCCZKZpqTgZISBbDbaT",
+      "name": "AutoBuild",
+      "category": "Local automated project builder",
+      "badge": "Launch price",
+      "featured": true,
+      "active": true,
+      "price_label": "$5 one-time",
+      "description": "One-time purchase. Unlimited use for life on project after project.",
+      "features": [
+        "Runs on your machine with your files",
+        "Scans and understands existing project folders",
+        "Repairs dependencies and build problems",
+        "Builds and tests websites, apps, and software",
+        "No subscription or monthly fee"
+      ],
+      "checkout_url": "https://buy.stripe.com/8x200ifSF6PTaYH4Hy1Fe0b",
+      "fulfillment_status": "manual_until_artifact_is_connected"
+    }
+  ]
 }
