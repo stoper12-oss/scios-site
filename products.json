@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-15T10:18:00Z",
+  "updated_at": "2026-09-25T01:45:00Z",
   "currency": "usd",
   "products": [
     {
@@ -23,6 +23,28 @@
         "No subscription or monthly fee"
       ],
       "checkout_url": "https://buy.stripe.com/8x200ifSF6PTaYH4Hy1Fe0b",
+      "fulfillment_status": "manual_until_artifact_is_connected"
+    },
+    {
+      "id": "project-auditor",
+      "stripe_product_id": "prod_VK2eeNST1bMktE",
+      "stripe_price_id": "price_1UJOYkCCZKZpqTgZRGVsZaFm",
+      "name": "SCIOS Project Auditor",
+      "category": "Local evidence-backed project verifier",
+      "badge": "New product",
+      "featured": false,
+      "active": true,
+      "price_label": "$19 one-time",
+      "description": "Local project verifier that checks common manifests and structure, scans for likely exposed secrets, runs supported test/build commands, and reports READY, NEEDS_WORK, or BROKEN from observed evidence.",
+      "features": [
+        "Runs locally with your files",
+        "Detects Python, Node.js, Rust, Go, Flutter, Gradle, Maven, and common web projects",
+        "Scans for likely exposed secrets",
+        "Runs supported real test/build verification",
+        "Produces text or JSON evidence reports",
+        "No monthly fee"
+      ],
+      "checkout_url": "https://buy.stripe.com/14AdR87m95LP4Aj3Du1Fe0c",
       "fulfillment_status": "manual_until_artifact_is_connected"
     }
   ]
