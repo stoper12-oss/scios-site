@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Order received | Willis Innovations</title><link rel="stylesheet" href="site.css"></head>
+<body class="transaction-page"><main class="transaction-card">
+<a class="brand" href="willis-store.html"><span class="brand-mark" aria-hidden="true"><span></span></span><span><strong>WILLIS INNOVATIONS</strong><small>Software made affordable</small></span></a>
+<p class="transaction-state">Stripe checkout completed</p><h1 id="title">Thank you. Your order was received.</h1>
+<p>Stripe will send a receipt to the email used at checkout. Keep that receipt as your proof of purchase. The current release is Linux-verified.</p>
+<p><strong>Delivery:</strong> product delivery is currently fulfilled after Stripe payment confirmation. If your download instructions do not arrive, email support from the same address used at checkout.</p>
+<div class="transaction-actions"><a class="button button-primary" href="willis-store.html">Return to the store</a><a class="button button-secondary" id="help" href="mailto:support@scios.site?subject=Willis%20Innovations%20order%20delivery">Delivery help</a></div>
+<small class="transaction-note">This return page is not itself proof that funds settled; fulfillment follows Stripe’s payment record.</small>
+</main><script>
+const names={autobuild:'AutoBuild',paperwork:'PaperWork',inventory:'Inventory',investigator:'The Investigator'};
+const p=new URLSearchParams(location.search).get('product');if(names[p]){document.getElementById('title').textContent='Thank you. Your '+names[p]+' order was received.';document.getElementById('help').href='mailto:support@scios.site?subject='+encodeURIComponent(names[p]+' order delivery');}
+</script></body></html>

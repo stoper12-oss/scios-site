@@ -1,0 +1,281 @@
+{
+  "schema_version": 2,
+  "updated_at": "2026-09-30",
+  "currency": "usd",
+  "verified_platform": "Linux",
+  "products": [
+    {
+      "id": "autobuild",
+      "name": "AutoBuild",
+      "price": "$10 one-time",
+      "status": "Locally tested — Linux",
+      "description": "Copy, scan, test and build trusted Python or Node projects; report failures and generate a launcher when possible.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": "https://buy.stripe.com/dRm14mcGt4HLeaT1vm1Fe0d",
+      "purchasable": true,
+      "order": 1
+    },
+    {
+      "id": "paperwork",
+      "name": "PaperWork",
+      "price": "$10 one-time",
+      "status": "Locally tested — Linux",
+      "description": "Store original files locally, extract available text, suggest categories and search documents.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": "https://buy.stripe.com/28EaEW0XL2zDc2Lgqg1Fe0e",
+      "purchasable": true,
+      "order": 2
+    },
+    {
+      "id": "inventory",
+      "name": "Inventory",
+      "price": "$10 one-time",
+      "status": "Locally tested — Linux",
+      "description": "Track stock by SKU with movement history, reorder levels, search, CSV export and full backup.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": "https://buy.stripe.com/4gMcN4cGt8Y1eaT6PG1Fe0f",
+      "purchasable": true,
+      "order": 3
+    },
+    {
+      "id": "invoice-estimate",
+      "name": "Invoice & Estimate",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Create, save, search and print invoices or estimates with tax, discount, CSV register and local backup.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 4
+    },
+    {
+      "id": "subscription-crusher",
+      "name": "Subscription Crusher",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Track recurring costs and cancellation progress without claiming a cancellation succeeded.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 5
+    },
+    {
+      "id": "the-investigator",
+      "name": "The Investigator",
+      "price": "$15 one-time",
+      "status": "Locally tested — Linux",
+      "description": "Build sourced cases with public links, observations, hypotheses and exportable reports.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": "https://buy.stripe.com/7sY28qdKx3DHd6Pfmc1Fe0g",
+      "purchasable": true,
+      "order": 6
+    },
+    {
+      "id": "photoroyalties",
+      "name": "PhotoRoyalties™",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Catalog photos locally, review metadata and releases, and export a manual marketplace handoff ZIP.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 7
+    },
+    {
+      "id": "credit-keeper",
+      "name": "Credit Keeper™",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Keep account records and follow-up tasks in a password-encrypted local vault.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 8
+    },
+    {
+      "id": "easy-button-maker",
+      "name": "Easy Button Maker™",
+      "price": "Custom quote",
+      "status": "Locally tested — Linux",
+      "description": "Create repeatable local buttons for file and folder chores, with dry runs, backups and logs.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 9
+    },
+    {
+      "id": "miletrack",
+      "name": "MileTrack™",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Log vehicle trips with editable odometer records, search, print, CSV and backups.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 10
+    },
+    {
+      "id": "opportunity-miner",
+      "name": "Opportunity Miner™",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Watch user-chosen public RSS/Atom feeds, filter keywords and track leads locally.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 11
+    },
+    {
+      "id": "timecard",
+      "name": "TimeCard",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Log shifts with start/end times, breaks, hours and estimated labor cost; export a backup.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 12
+    },
+    {
+      "id": "receipt-crusher",
+      "name": "Receipt Crusher",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Store original receipts locally, review OCR suggestions, correct amounts and search expense totals.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 13
+    },
+    {
+      "id": "warranty-crusher",
+      "name": "Warranty Crusher",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Track warranties and purchase references, search records, and export end dates to a calendar.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 14
+    },
+    {
+      "id": "cardsnap",
+      "name": "CardSnap",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Scan card photos locally with OCR, correct contacts, and export vCards.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 15
+    },
+    {
+      "id": "menumaker",
+      "name": "MenuMaker",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Design a menu with sections, prices and descriptions; print it or save it as PDF, with backups.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 16
+    },
+    {
+      "id": "bookit",
+      "name": "BookIt",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Log appointments, flag overlaps, search records and export calendar events.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 17
+    },
+    {
+      "id": "customers",
+      "name": "Customers",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Track local customer contacts and status, search records and export vCards.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 18
+    },
+    {
+      "id": "voicenote",
+      "name": "VoiceNote",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Record, save, replay, import and download voice memos locally in the browser.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 19
+    },
+    {
+      "id": "photoclean",
+      "name": "PhotoClean",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Find exact and likely visual duplicate photos locally; export a report without deleting files.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 20
+    },
+    {
+      "id": "formmaker",
+      "name": "FormMaker",
+      "price": "Price TBD",
+      "status": "Locally tested — Linux",
+      "description": "Create typed local forms, save responses, print a blank form and export responses or backups.",
+      "platforms": [
+        "Linux"
+      ],
+      "checkout_url": null,
+      "purchasable": false,
+      "order": 21
+    }
+  ]
+}
