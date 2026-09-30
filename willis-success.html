@@ -1,13 +1,83 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Order received | Willis Innovations</title><link rel="stylesheet" href="site.css"></head>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Order received | Willis Innovations</title><link rel="stylesheet" href="site.css">
+<style>
+.fulfillment-box{margin:22px 0;padding:18px;border:1px solid #31506d;border-radius:12px;background:#0d1c2c}
+.fulfillment-box p{margin:.4rem 0;color:#c9d8e6}.fulfillment-state{font-weight:800;color:#fff}
+</style></head>
 <body class="transaction-page"><main class="transaction-card">
 <a class="brand" href="willis-store.html"><span class="brand-mark" aria-hidden="true"><span></span></span><span><strong>WILLIS INNOVATIONS</strong><small>Software made affordable</small></span></a>
 <p class="transaction-state">Stripe checkout completed</p><h1 id="title">Thank you. Your order was received.</h1>
 <p>Stripe will send a receipt to the email used at checkout. Keep that receipt as your proof of purchase. The current release is Linux-verified.</p>
-<p><strong>Delivery:</strong> product delivery is currently fulfilled after Stripe payment confirmation. If your download instructions do not arrive, email support from the same address used at checkout.</p>
-<div class="transaction-actions"><a class="button button-primary" href="willis-store.html">Return to the store</a><a class="button button-secondary" id="help" href="mailto:support@scios.site?subject=Willis%20Innovations%20order%20delivery">Delivery help</a></div>
-<small class="transaction-note">This return page is not itself proof that funds settled; fulfillment follows Stripe’s payment record.</small>
-</main><script>
+<section class="fulfillment-box" aria-live="polite">
+<p class="fulfillment-state" id="fulfillment-state">Checking delivery status…</p>
+<p id="fulfillment-detail">Your download will appear here after the payment is verified.</p>
+<div class="transaction-actions" id="download-actions"></div>
+</section>
+<div class="transaction-actions"><a class="button button-secondary" href="willis-store.html">Return to the store</a><a class="button button-secondary" id="help" href="mailto:support@scios.site?subject=Willis%20Innovations%20order%20delivery">Delivery help</a></div>
+<small class="transaction-note">The return page itself is not proof of settlement. Fulfillment is released only after a verified Stripe payment record.</small>
+</main>
+<script>
 const names={autobuild:'AutoBuild',paperwork:'PaperWork',inventory:'Inventory',investigator:'The Investigator'};
-const p=new URLSearchParams(location.search).get('product');if(names[p]){document.getElementById('title').textContent='Thank you. Your '+names[p]+' order was received.';document.getElementById('help').href='mailto:support@scios.site?subject='+encodeURIComponent(names[p]+' order delivery');}
+const params=new URLSearchParams(location.search);
+const product=params.get('product');
+const sessionId=params.get('session_id')||'';
+const state=document.getElementById('fulfillment-state');
+const detail=document.getElementById('fulfillment-detail');
+const actions=document.getElementById('download-actions');
+if(names[product]){
+  document.getElementById('title').textContent='Thank you. Your '+names[product]+' order was received.';
+  document.getElementById('help').href='mailto:support@scios.site?subject='+encodeURIComponent(names[product]+' order delivery');
+}
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function automaticFulfillment(config){
+  if(!sessionId||!/^cs_[A-Za-z0-9_]+$/.test(sessionId)){
+    state.textContent='Order received.';
+    detail.textContent='The checkout session reference is missing. Keep your Stripe receipt and contact delivery support.';
+    return;
+  }
+  state.textContent='Verifying payment…';
+  detail.textContent='Stripe confirmation can take a few seconds.';
+  const base=String(config.api_base||'').replace(/\/+$/,'');
+  for(let attempt=0;attempt<8;attempt++){
+    try{
+      const response=await fetch(base+'/api/fulfillment/session/'+encodeURIComponent(sessionId),{cache:'no-store',mode:'cors',credentials:'omit'});
+      const data=await response.json().catch(()=>({}));
+      if(response.status===202){
+        await sleep(Math.max(1000,Math.min(Number(data.retry_after||2)*1000,4000)));
+        continue;
+      }
+      if(response.ok&&data.status==='ready'&&/^https:\/\//.test(data.download_url||'')){
+        state.textContent='Payment verified. Your download is ready.';
+        detail.textContent=(data.product||names[product]||'Your product')+' is available through a short-lived secure download link.';
+        const link=document.createElement('a');
+        link.className='button button-primary';
+        link.href=data.download_url;
+        link.rel='noopener noreferrer';
+        link.textContent='Download '+(data.product||names[product]||'purchase')+' →';
+        actions.replaceChildren(link);
+        return;
+      }
+      state.textContent='Delivery needs attention.';
+      detail.textContent='Your payment return was received, but the automatic download could not be released. Keep your Stripe receipt and contact delivery support.';
+      return;
+    }catch(error){
+      if(attempt<7){await sleep(2000);continue}
+    }
+  }
+  state.textContent='Payment confirmation is still processing.';
+  detail.textContent='Keep this page open for a moment or use delivery support with the same email address used at checkout.';
+}
+fetch('fulfillment-config.json',{cache:'no-store'})
+  .then(r=>r.ok?r.json():null)
+  .then(config=>{
+    if(config&&config.enabled===true&&/^https:\/\/[^/]+/.test(config.api_base||'')) return automaticFulfillment(config);
+    state.textContent='Order received. Delivery is currently assisted.';
+    detail.textContent='Automatic delivery is being activated. Keep your Stripe receipt; if download instructions do not arrive, use Delivery help.';
+  })
+  .catch(()=>{
+    state.textContent='Order received. Delivery is currently assisted.';
+    detail.textContent='Keep your Stripe receipt and use Delivery help if download instructions do not arrive.';
+  });
 </script></body></html>
