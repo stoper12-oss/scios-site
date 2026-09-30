@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="Willis Innovations software store: practical one-time-purchase tools, Linux verified, with Stripe-hosted checkout.">
+<title>Willis Innovations Software Store</title>
+<link rel="canonical" href="https://scios.site/willis-store.html"><link rel="stylesheet" href="site.css">
+<style>
+.store-shell{max-width:1180px;margin:auto;padding:46px 22px 80px}.store-hero{padding:40px 0 24px}.store-hero h1{max-width:900px}.store-note{border:1px solid #31506d;background:#0d1c2c;border-radius:14px;padding:16px 18px;margin:22px 0;color:#c9d8e6}.store-note strong{color:#fff}.store-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:28px}.store-card{background:#101f30;border:1px solid #2c4258;border-radius:16px;padding:20px;display:flex;flex-direction:column;min-height:320px}.store-card.sale{border-color:#3b7398}.store-card h2{font-size:1.28rem;margin:.45rem 0}.store-card p{color:#b8c9d8}.store-status{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:#8fd4ff}.store-price{font-size:1.35rem;font-weight:800;color:#fff;margin:.25rem 0}.store-platforms{font-size:.85rem;color:#9ee3b1}.store-actions{margin-top:auto;padding-top:16px}.store-actions .button{width:100%;justify-content:center}.disabled-button{display:inline-flex;width:100%;justify-content:center;padding:12px 15px;border:1px solid #455b70;border-radius:8px;color:#93a6b8;background:#0a1520}.store-topnav{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 22px;border-bottom:1px solid #22384d}.store-topnav a{color:#d7e8f7;text-decoration:none}.store-brand{font-weight:900;letter-spacing:.04em}.store-meta{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.pill{border:1px solid #35516a;border-radius:999px;padding:7px 11px;color:#c9d9e7;font-size:.88rem}
+</style></head><body>
+<nav class="store-topnav"><a class="store-brand" href="willis-store.html">WILLIS INNOVATIONS</a><span><a href="./">SCIOS</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></span></nav>
+<main class="store-shell">
+<section class="store-hero"><p class="eyebrow"><span></span> SOFTWARE MADE AFFORDABLE</p>
+<h1>Buy the tool. Own the tool. Use the tool.</h1>
+<p class="hero-lede">Practical local-first software with clear pricing and no required monthly subscription for the one-time products sold here.</p>
+<div class="store-meta"><span class="pill">21 Linux-verified products</span><span class="pill">4 available to buy now</span><span class="pill">Stripe-hosted checkout</span></div>
+<div class="store-note"><strong>Current release status:</strong> Linux is the completed verification platform. Windows, macOS, Android and iPhone support are not claimed until those platform passes are completed. Purchases are confirmed through Stripe; delivery is currently fulfilled after verified payment, so keep your Stripe receipt.</div>
+</section>
+<section><div id="store-grid" class="store-grid" aria-live="polite"></div></section>
+</main>
+<script>
+const grid=document.getElementById('store-grid');
+function safe(t){return String(t??'')}
+fetch('willis-products.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(data=>{
+ grid.replaceChildren(...data.products.map(p=>{
+  const card=document.createElement('article');card.className='store-card'+(p.purchasable?' sale':'');
+  const status=document.createElement('span');status.className='store-status';status.textContent=safe(p.status);
+  const h=document.createElement('h2');h.textContent=safe(p.name);
+  const price=document.createElement('div');price.className='store-price';price.textContent=safe(p.price);
+  const desc=document.createElement('p');desc.textContent=safe(p.description);
+  const platform=document.createElement('div');platform.className='store-platforms';platform.textContent='Verified: '+(p.platforms?.join(', ')||'Not yet verified');
+  const actions=document.createElement('div');actions.className='store-actions';
+  if(p.purchasable && /^https:\/\/buy\.stripe\.com\//.test(p.checkout_url||'')){
+    const a=document.createElement('a');a.className='button button-primary';a.href=p.checkout_url;a.rel='noopener noreferrer';a.textContent='Buy securely with Stripe →';actions.append(a);
+  }else if(/quote/i.test(p.price||'')){
+    const a=document.createElement('a');a.className='button button-secondary';a.href='mailto:support@scios.site?subject='+encodeURIComponent('Willis Innovations quote: '+p.name);a.textContent='Request a quote';actions.append(a);
+  }else{
+    const span=document.createElement('span');span.className='disabled-button';span.textContent='Price / checkout coming soon';actions.append(span);
+  }
+  card.append(status,h,price,desc,platform,actions);return card;
+ }));
+}).catch(()=>{grid.textContent='The catalog could not be loaded. Please refresh or email support@scios.site.'});
+</script></body></html>
