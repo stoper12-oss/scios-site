@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-25T01:45:00Z",
+  "updated_at": "2026-09-30T05:00:00Z",
   "currency": "usd",
   "products": [
     {
       "id": "autobuild",
       "stripe_product_id": "prod_VGLSnHsL73goPW",
-      "stripe_price_id": "price_1UFolyCCZKZpqTgZISBbDbaT",
+      "stripe_price_id": "price_1ULGNOCCZKZpqTgZBAILqo5u",
       "name": "AutoBuild",
       "category": "Local automated project builder",
       "badge": "Launch price",
       "featured": true,
       "active": true,
-      "price_label": "$5 one-time",
-      "description": "One-time purchase. Perpetual use of AutoBuild 5.1, with versions 5.2, 5.3, 5.4 and bug-fix releases included.",
+      "price_label": "$10 one-time",
+      "description": "Linux-verified release for trusted Python and Node projects: copy, detect, optionally install dependencies, run checks/builds, report results and generate a launcher when possible.",
       "features": [
         "Runs locally with your files",
         "Scans and understands existing project folders",
@@ -22,8 +22,8 @@
         "Versions 5.2, 5.3, 5.4 and bug fixes included",
         "No subscription or monthly fee"
       ],
-      "checkout_url": "https://buy.stripe.com/8x200ifSF6PTaYH4Hy1Fe0b",
-      "fulfillment_status": "manual_until_artifact_is_connected"
+      "checkout_url": "https://buy.stripe.com/dRm14mcGt4HLeaT1vm1Fe0d",
+      "fulfillment_status": "manual_after_verified_stripe_payment"
     },
     {
       "id": "project-auditor",
