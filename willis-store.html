@@ -21,7 +21,23 @@
 <script>
 const grid=document.getElementById('store-grid');
 function safe(t){return String(t??'')}
-fetch('willis-products.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(data=>{
+async function fulfillmentReady(){
+ try{
+  const configResponse=await fetch('fulfillment-config.json',{cache:'no-store'});
+  if(!configResponse.ok)return false;
+  const config=await configResponse.json();
+  if(config.enabled!==true||!/^https:\/\/[^/]+/.test(config.api_base||''))return false;
+  const base=String(config.api_base).replace(/\/+$/,'');
+  const healthResponse=await fetch(base+'/healthz',{cache:'no-store',mode:'cors',credentials:'omit'});
+  const health=await healthResponse.json().catch(()=>({}));
+  const checks=health.checks||{};
+  return healthResponse.ok&&health.ok===true&&checks.database===true&&checks.signing_secret===true&&checks.stripe_webhook_secret===true&&checks.artifacts===true;
+ }catch{return false}
+}
+Promise.all([
+ fetch('willis-products.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()),
+ fulfillmentReady()
+]).then(([data,checkoutReady])=>{
  grid.replaceChildren(...data.products.map(p=>{
   const card=document.createElement('article');card.className='store-card'+(p.purchasable?' sale':'');
   const status=document.createElement('span');status.className='store-status';status.textContent=safe(p.status);
@@ -30,8 +46,10 @@ fetch('willis-products.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.r
   const desc=document.createElement('p');desc.textContent=safe(p.description);
   const platform=document.createElement('div');platform.className='store-platforms';platform.textContent='Verified: '+(p.platforms?.join(', ')||'Not yet verified');
   const actions=document.createElement('div');actions.className='store-actions';
-  if(p.purchasable && /^https:\/\/buy\.stripe\.com\//.test(p.checkout_url||'')){
+  if(p.purchasable && checkoutReady && /^https:\/\/buy\.stripe\.com\//.test(p.checkout_url||'')){
     const a=document.createElement('a');a.className='button button-primary';a.href=p.checkout_url;a.rel='noopener noreferrer';a.textContent='Buy securely with Stripe →';actions.append(a);
+  }else if(p.purchasable){
+    const span=document.createElement('span');span.className='disabled-button';span.textContent='Checkout temporarily unavailable';actions.append(span);
   }else if(/quote/i.test(p.price||'')){
     const a=document.createElement('a');a.className='button button-secondary';a.href='mailto:support@scios.site?subject='+encodeURIComponent('Willis Innovations quote: '+p.name);a.textContent='Request a quote';actions.append(a);
   }else{
