@@ -13,8 +13,8 @@
 <section class="store-hero"><p class="eyebrow"><span></span> SOFTWARE MADE AFFORDABLE</p>
 <h1>Buy the tool. Own the tool. Use the tool.</h1>
 <p class="hero-lede">Practical local-first software with clear pricing and no required monthly subscription for the one-time products sold here.</p>
-<div class="store-meta"><span class="pill">21 Linux-verified products</span><span class="pill">4 available to buy now</span><span class="pill">Stripe-hosted checkout</span></div>
-<div class="store-note"><strong>Current release status:</strong> Linux is the completed verification platform. Windows, macOS, Android and iPhone support are not claimed until those platform passes are completed. Purchases are confirmed through Stripe; delivery is currently fulfilled after verified payment, so keep your Stripe receipt.</div>
+<div class="store-meta"><span class="pill">21 Linux-verified products</span><span class="pill">21 available to buy now</span><span class="pill">Stripe-hosted checkout</span></div>
+<div class="store-note"><strong>Current release status:</strong> Linux is the completed verification platform. Windows, macOS, Android and iPhone support are not claimed until those platform passes are completed. Purchases are confirmed through Stripe and delivered through the secure fulfillment service after verified payment. Keep your Stripe receipt.</div>
 </section>
 <section><div id="store-grid" class="store-grid" aria-live="polite"></div></section>
 </main>
@@ -31,7 +31,7 @@ async function fulfillmentReady(){
   const healthResponse=await fetch(base+'/healthz',{cache:'no-store',mode:'cors',credentials:'omit'});
   const health=await healthResponse.json().catch(()=>({}));
   const checks=health.checks||{};
-  return healthResponse.ok&&health.ok===true&&checks.database===true&&checks.signing_secret===true&&checks.stripe_webhook_secret===true&&checks.artifacts===true;
+  return healthResponse.ok&&health.ok===true&&health.product_count===21&&checks.database===true&&checks.signing_secret===true&&checks.stripe_webhook_secret===true&&checks.artifacts===true;
  }catch{return false}
 }
 Promise.all([
