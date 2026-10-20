@@ -1,0 +1,1 @@
+document.querySelector('#product-search').addEventListener('input',event=>{const term=event.target.value.trim().toLowerCase();let count=0;document.querySelectorAll('[data-search]').forEach(card=>{card.hidden=!card.dataset.search.toLowerCase().includes(term);if(!card.hidden)count++;});document.querySelector('#result-count').textContent=count+' tools';});

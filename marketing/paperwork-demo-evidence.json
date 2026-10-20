@@ -1,0 +1,27 @@
+{
+  "captured_at": "2026-10-20",
+  "method": "Real local PaperWork HTTP upload, OCR, index, search predicate and original-download verification; synthetic documents. This is not a customer testimonial or a live purchase.",
+  "checks": {
+    "image_ocr": true,
+    "category_suggestions": true,
+    "search_1042_matches": 1,
+    "original_download_matches": true,
+    "duplicate_rejected": true,
+    "persisted_records": 2
+  },
+  "documents": [
+    {
+      "name": "workshop-receipt.png",
+      "category": "Receipt",
+      "extracted": "DEMO RECEIPT\n\nWorkshop supplies\n\nSubtotal 42.00\n\nTotal 42.00\n\nSAMPLE - NOT A REAL PURCHASE\n",
+      "size": 44016
+    },
+    {
+      "name": "invoice-1042.txt",
+      "category": "Invoice",
+      "extracted": "DEMO INVOICE\nInvoice 1042\nBill to: Example Workshop\nAmount due: $125.00\nSAMPLE - NOT A REAL PURCHASE\n",
+      "size": 101
+    }
+  ],
+  "original_sha256": "026a741780a66c20e56f81c3ea11dd80e13fa830ac3c2cc7202386be841103ea"
+}
