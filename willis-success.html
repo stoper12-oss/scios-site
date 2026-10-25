@@ -19,7 +19,17 @@
 <small class="transaction-note">The return page itself is not proof of settlement. Fulfillment is released only after a verified Stripe payment record.</small>
 </main>
 <script>
-const names={autobuild:'AutoBuild',paperwork:'PaperWork',inventory:'Inventory',investigator:'The Investigator'};
+const names={
+  autobuild:'AutoBuild',paperwork:'PaperWork',inventory:'Inventory',
+  'invoice-estimate':'Invoice & Estimate','subscription-crusher':'Subscription Crusher',
+  investigator:'The Investigator','the-investigator':'The Investigator',
+  photoroyalties:'PhotoRoyalties™','credit-keeper':'Credit Keeper™',
+  'easy-button':'Easy Button Maker™','easy-button-maker':'Easy Button Maker™',
+  miletrack:'MileTrack™','opportunity-miner':'Opportunity Miner™',timecard:'TimeCard',
+  'receipt-crusher':'Receipt Crusher','warranty-crusher':'Warranty Crusher',
+  cardsnap:'CardSnap',menumaker:'MenuMaker',bookit:'BookIt',customers:'Customers',
+  voicenote:'VoiceNote',photoclean:'PhotoClean',formmaker:'FormMaker'
+};
 const params=new URLSearchParams(location.search);
 const product=params.get('product');
 const sessionId=params.get('session_id')||'';
