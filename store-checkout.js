@@ -12,7 +12,9 @@
     const url = new URL(value);
     if (url.protocol !== 'https:' || url.hostname !== 'buy.stripe.com' || url.username || url.password) throw Error('Invalid checkout destination');
     keys.forEach(key => { if (clean(campaign[key])) url.searchParams.set(key, campaign[key]); });
-    const reference = ['wi', campaign.utm_source || 'direct', campaign.utm_medium || 'site', campaign.utm_campaign || 'organic', clean(product) || 'catalog'].join('_');
+    const rawProduct = clean(product);
+    const canonicalProduct = ({'the-investigator':'investigator','easy-button-maker':'easy-button'})[rawProduct] || rawProduct;
+    const reference = ['wi', campaign.utm_source || 'direct', campaign.utm_medium || 'site', campaign.utm_campaign || 'organic', canonicalProduct || 'catalog'].join('_');
     url.searchParams.set('client_reference_id', reference.slice(0, 200));
     return url.href;
   }
@@ -24,7 +26,7 @@
     const healthResponse = await fetcher(config.api_base + '/healthz', {cache:'no-store', mode:'cors', credentials:'omit', signal});
     if (!healthResponse.ok) return false;
     const health = await healthResponse.json();
-    return health.ok === true && health.product_count === 21 && ['database','signing_secret','stripe_webhook_secret','artifacts'].every(key => health.checks?.[key] === true);
+    return health.ok === true && health.product_count === 21 && ['database','signing_secret','stripe_webhook_secret','service_origin','artifacts'].every(key => health.checks?.[key] === true);
   }
   const api = {attribution, checkoutURL, healthy};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
